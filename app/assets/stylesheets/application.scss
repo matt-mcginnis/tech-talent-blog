@@ -16,3 +16,14 @@
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+.jumbotron {
+    background-image: url('Candy-banner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
