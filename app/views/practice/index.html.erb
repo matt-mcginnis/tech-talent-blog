@@ -1,0 +1,13 @@
+<h1>Choose a Color!</h1>
+
+<% if !@name.blank? %>
+    <p>Hello, <%= @name %></p>
+<% end %>
+
+<p>
+    <%= link_to "Red", about_path(color: "red") %>
+</p>
+
+<p>
+    <%= link_to "Blue", about_path(color: "blue") %>
+</p>
