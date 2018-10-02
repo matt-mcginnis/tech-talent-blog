@@ -1,14 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Author:</strong>
-  <%= @comment.author %>
-</p>
+<div class="container" style="margin-left: 100px;">
 
-<p>
-  <strong>Comment entry:</strong>
-  <%= @comment.comment_entry %>
-</p>
+    <p>
+      <strong>Author:</strong>
+      <%= @comment.author %>
+    </p>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+    <p>
+      <strong>Comment entry:</strong>
+      <%= @comment.comment_entry %>
+    </p>
+
+    <%= link_to 'Edit', edit_comment_path(@comment) %> |
+    <%= link_to 'Back', comments_path %>
+
+</div>

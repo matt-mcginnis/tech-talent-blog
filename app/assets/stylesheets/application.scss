@@ -18,12 +18,28 @@
 @import 'bootstrap';
 
 html, body {
-  padding: 0;
-  margin: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .jumbotron {
     background-image: url('Candy-banner.png');
     background-repeat: no-repeat;
     background-size: cover;
+    color: white;
+}
+
+.jumbotron h1 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Comments */
+
+.form-group .form-control {
+    width: 20%;
+}
+
+.form-group #usr {
+    width: 10%;
 }

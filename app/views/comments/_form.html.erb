@@ -11,14 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author %>
+  <div class="form-group">
+    <label for="usr"><%= form.label :author %></label>
+    <%= form.text_field :author, class: "form-control", id: "usr" %>
   </div>
 
-  <div class="field">
-    <%= form.label :comment_entry %>
-    <%= form.text_area :comment_entry %>
+  <div class="form-group">
+    <label for="comment"><%= form.label :comment_entry %></label>
+    <%= form.text_area :comment_entry, class: "form-control", rows: 5, id: "comment" %>
   </div>
 
   <div class="field">
