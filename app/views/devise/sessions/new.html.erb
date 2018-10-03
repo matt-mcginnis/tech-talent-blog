@@ -1,14 +1,20 @@
-<h2>Log in</h2>
+<div class="jumbotron">
+    <div class="container">
+        <h1><b>Log In</b></h1>
+    </div>
+</div>
 
+<div class="container login">
+<div>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="form-group">
+    <label for="email"> <%= f.label :email %> </label>
+    <%= f.text_area :email, autofocus: true, autocomplete: "email", class: "form-control", style: "width: 300px;", rows: 1, id: "email" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="form-group">
+    <label for="password"> <%= f.label :password %> </label>
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control", style: "width: 300px;", rows: 1, id: "password" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -24,3 +30,5 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>

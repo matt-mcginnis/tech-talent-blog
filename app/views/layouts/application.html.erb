@@ -11,6 +11,7 @@
 
     <body>
 
+        <% if request.fullpath != "/users/sign_in" %>
         <nav class="navbar navbar-light">
             <%= link_to "Fall Blog", root_path, class: "navbar-brand" %>
             <form class="form-inline my-2 my-lg-0">
@@ -26,6 +27,7 @@
             <% end %>
         </div>
         </nav>
+        <% end %>
 
         <%= yield %>
     </body>
