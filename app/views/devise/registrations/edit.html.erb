@@ -13,6 +13,11 @@
       <%= f.text_field :username %>
   </div>
 
+  <div class="field">
+      <strong>Upload a Profile Picture</strong>
+      <%= f.file_field :avatar %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

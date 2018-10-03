@@ -1,35 +1,43 @@
 <div class="jumbotron">
     <div class="container">
-        <h1><b>My Candy Blog</b></h1>
+        <h1><b>My Fall Blog</b></h1>
     </div>
 </div>
 
 <div class="container">
-<h3>Welcome <%= current_user.email if current_user != nil %> </h3>
-<table class="table table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>Author</th>
-      <th colspan="5">Blog entry</th>
-    </tr>
-  </thead>
-
-  <tbody>
+    <h2 style="color: #343409;">Welcome <%= current_user.username if current_user != nil %> </h2>
+<div class="panel-group">
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user.username %></td>
-        <td><%= post.blog_entry %></td>
-        <td><%= post.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %></td>
-        <td><%= link_to 'Show', post, class: 'btn btn-default' %></td>
-        <td><%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
-      </tr>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <% if post.user.avatar != nil %>
+                    <td>
+                    <%= image_tag post.user.avatar.url, size: 50 %>
+                    </td>
+                <% end %>
+                <strong><%= post.user.username %></strong>
+            </div>
+        </div>
+        <div class="panel-body">
+            <%= post.blog_entry %>
+        </div>
+        <div class="panel-footer">
+            <div class="pull-right">
+                Posted at <%= post.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %>
+            </div>
+            <div class="pull-left">
+                <%= link_to 'Show', post, class: 'btn btn-default' %>
+                <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary' %>
+                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            </div>
+        </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
+</div>
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_post_path, class: "small_link" %>
 </div>
 <p id="notice"><%= notice %></p>

@@ -67,3 +67,9 @@ gem 'jquery-rails'
 
 # Authentication gem
 gem 'devise'
+
+# Gravatar
+gem 'gravatarify', '~> 3.0.0'
+
+# CarrierWave
+gem 'carrierwave', '~> 1.0'
