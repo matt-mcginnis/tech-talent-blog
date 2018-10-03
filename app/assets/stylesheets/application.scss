@@ -20,10 +20,7 @@
 html, body {
     margin: 0;
     padding: 0;
-}
-
-.table {
-    border-bottom: 1px solid #ddd;
+    background-color: lightpink;
 }
 
 .jumbotron {
@@ -38,6 +35,23 @@ html, body {
     padding: 0;
 }
 
+.table-hover > tbody > tr:hover {
+  background-color: pink;
+}
+
+.table-bordered {
+  border: 1px solid black;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > th,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > th,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid black;
+}
+
 /* Comments */
 
 .form-group .form-control {
@@ -46,4 +60,12 @@ html, body {
 
 .form-group #usr {
     width: 10%;
+}
+
+.btn-primary:visited {
+    color: #fff;
+}
+
+.btn-danger:visited {
+    color: #fff;
 }

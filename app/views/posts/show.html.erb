@@ -16,17 +16,23 @@
     <%= render 'comments/form', comment: @comment %>
 </div>
 
-<table class="table">
-    <tr>
-        <th>Author</th>
-        <th>Comment</th>
-    </tr>
-    <tr>
-        <% @post.comments.each do |comment| %>
-            <td><%= comment.author %> <br></td>
-            <td><%= comment.comment_entry %></td>
-        <% end %>
-    <tr>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Comment</th>
+            <th>Time Posted</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <% @post.comments.each do |comment| %>
+                <td><%= comment.author %></td>
+                <td><%= comment.comment_entry %></td>
+                <td><%= comment.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %></td>
+            <% end %>
+        <tr>
+    </tbody>
 </table>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |

@@ -1,16 +1,15 @@
 <div class="jumbotron">
     <div class="container">
-        <h1>Posts</h1>
+        <h1><b>My Candy Blog</b></h1>
     </div>
 </div>
 
 <div class="container">
-<table class="table">
+<table class="table table-bordered table-hover">
   <thead>
     <tr>
       <th>Author</th>
-      <th>Blog entry</th>
-      <th colspan="3"></th>
+      <th colspan="5">Blog entry</th>
     </tr>
   </thead>
 
@@ -19,7 +18,7 @@
       <tr>
         <td><%= post.author %></td>
         <td><%= post.blog_entry %></td>
-        <td><%= post.created_at.in_time_zone("America/New_York").strftime("%m/%d/%Y at %I:%M%p") %></td>
+        <td><%= post.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %></td>
         <td><%= link_to 'Show', post, class: 'btn btn-default' %></td>
         <td><%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary' %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
