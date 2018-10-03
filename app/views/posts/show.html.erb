@@ -4,7 +4,7 @@
 
 <p>
   <strong>Author:</strong>
-  <%= @post.author %>
+  <%= @post.user.username %>
 </p>
 
 <p>
@@ -25,13 +25,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <% @post.comments.each do |comment| %>
-                <td><%= comment.author %></td>
+        <% @post.comments.each do |comment| %>
+            <tr>
+                <td><%= comment.user.username %></td>
                 <td><%= comment.comment_entry %></td>
                 <td><%= comment.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %></td>
-            <% end %>
-        <tr>
+            </tr>
+        <% end %>
     </tbody>
 </table>
 

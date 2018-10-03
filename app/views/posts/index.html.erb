@@ -5,6 +5,7 @@
 </div>
 
 <div class="container">
+<h3>Welcome <%= current_user.email if current_user != nil %> </h3>
 <table class="table table-bordered table-hover">
   <thead>
     <tr>
@@ -16,7 +17,7 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.author %></td>
+        <td><%= post.user.username %></td>
         <td><%= post.blog_entry %></td>
         <td><%= post.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %></td>
         <td><%= link_to 'Show', post, class: 'btn btn-default' %></td>
@@ -31,3 +32,4 @@
 
 <%= link_to 'New Post', new_post_path %>
 </div>
+<p id="notice"><%= notice %></p>

@@ -12,17 +12,16 @@
   <% end %>
 
   <div class="form-group">
-    <label for="usr"><%= form.label :author %></label>
-    <%= form.text_field :author, class: "form-control", id: "usr" %>
-  </div>
-
-  <div class="form-group">
     <label for="comment"><%= form.label :comment_entry %></label>
     <%= form.text_area :comment_entry, class: "form-control", rows: 5, id: "comment" %>
   </div>
 
   <div class="field">
       <%= form.hidden_field :post_id, value: @post.id %>
+  </div>
+
+  <div class="field">
+      <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div class="actions">
