@@ -1,41 +1,76 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+    <div class="container">
+        <h1><b>Post</b></h1>
+    </div>
+</div>
 
 <div class="container">
-
-<p>
-  <strong>Author:</strong>
-  <%= @post.user.username %>
-</p>
-
-<p>
-  <strong>Blog entry:</strong>
-  <%= @post.blog_entry %>
-</p>
+    <h2><b>Original Post</b></h2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <% if @post.user.avatar != nil %>
+                    <td>
+                    <%= image_tag @post.user.avatar.url, size: 50, class: "img-circle" %>
+                    </td>
+                <% end %>
+                <strong><%= @post.user.username %></strong>
+            </div>
+        </div>
+        <div class="panel-body">
+            <%= @post.blog_entry %>
+        </div>
+        <div class="panel-footer">
+            <div class="pull-right">
+                Posted at <%= @post.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %>
+            </div>
+            <div class="pull-left">
+                <%= link_to 'Show', @post, class: 'btn btn-primary' %>
+                <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-secondary' %>
+                <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-tertiary' %>
+            </div>
+        </div>
+    </div>
 
 <div id="comments">
     <%= render 'comments/form', comment: @comment %>
 </div>
 
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Author</th>
-            <th>Comment</th>
-            <th>Time Posted</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @post.comments.each do |comment| %>
-            <tr>
-                <td><%= comment.user.username %></td>
-                <td><%= comment.comment_entry %></td>
-                <td><%= comment.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<h2 style="margin-top: 30px; margin-bottom: 0px;"> <b>Comments</b> </h2>
+
+<div class="panel-group">
+    <% @post.comments.each do |comment| %>
+    <div class="panel panel-comments">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <% if comment.user.avatar != nil %>
+                    <td>
+                    <%= image_tag comment.user.avatar.url, size: 50, class: "img-circle" %>
+                    </td>
+                <% end %>
+                <strong><%= comment.user.username %></strong>
+            </div>
+        </div>
+        <div class="panel-body">
+            <%= comment.comment_entry %>
+        </div>
+        <div class="panel-footer">
+            <div class="pull-right">
+                Posted at <%= comment.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %>
+            </div>
+            <div class="pull-left">
+                <%= link_to 'Show', comment, class: 'btn btn-primary' %>
+                <%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-secondary' %>
+                <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-tertiary' %>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
 
 </div>
+
+<p id="notice"><%= notice %></p>
