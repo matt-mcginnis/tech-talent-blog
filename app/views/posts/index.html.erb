@@ -1,45 +1,50 @@
 <div class="jumbotron">
     <div class="container">
-        <h1><b>My Fall Blog</b></h1>
+        <h1>
+            <b>My Fall Blog</b>
+        </h1>
     </div>
 </div>
 
 <div class="container">
     <div class="welcome">
-    <h2 style="color: #343409;">Welcome <%= current_user.username if current_user != nil %>! </h2>
-    <%= link_to 'Post Something', new_post_path, class: "btn btn-tertiary" %>
+        <h2 style="color: #343409;">Welcome
+            <%= current_user.username if current_user != nil %>!
+        </h2>
+        <%= link_to 'Post Something', new_post_path, class: "btn btn-tertiary" %>
     </div>
-<div class="panel-group">
-    <% @posts.each do |post| %>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <div class="pull-left">
-                <% if post.user.avatar != nil %>
-                    <td>
-                    <%= image_tag post.user.avatar.url, size: 50, class: "img-circle" %>
-                    </td>
-                <% end %>
-                <strong><%= post.user.username %></strong>
+    <div class="panel-group">
+        <% @posts.each do |post| %>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <% if post.user.avatar != nil %>
+                            <td>
+                                <%= image_tag post.user.avatar.url, size: 50, class: "img-circle" %>
+                            </td>
+                        <% end %>
+                        <strong><%= post.user.username %></strong>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <%= post.blog_entry %>
+                </div>
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        Posted at
+                        <%= post.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %>
+                    </div>
+                    <div class="pull-left">
+                        <%= link_to 'Show', post, class: 'btn btn-primary' %>
+                        <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-secondary' %>
+                        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-tertiary' %>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="panel-body">
-            <%= post.blog_entry %>
-        </div>
-        <div class="panel-footer">
-            <div class="pull-right">
-                Posted at <%= post.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %>
-            </div>
-            <div class="pull-left">
-                <%= link_to 'Show', post, class: 'btn btn-primary' %>
-                <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-secondary' %>
-                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-tertiary' %>
-            </div>
-        </div>
+        <% end %>
     </div>
-    <% end %>
-</div>
 
-<br>
+    <br>
 
 </div>
 <p id="notice"><%= notice %></p>
