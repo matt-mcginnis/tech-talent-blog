@@ -73,3 +73,6 @@ gem 'gravatarify', '~> 3.0.0'
 
 # CarrierWave
 gem 'carrierwave', '~> 1.0'
+
+# Kaminari
+gem 'kaminari'

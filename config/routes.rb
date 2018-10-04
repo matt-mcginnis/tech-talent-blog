@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   get 'posts' => 'posts#index'
   root 'posts#index'
+
+  get '/:name' => 'posts#user_posts', as: :user_posts
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,26 +1,14 @@
 <div class="jumbotron">
     <div class="container">
         <h1>
-            <b>My Fall Blog</b>
+            <b> <%= @user.username %> </b>
         </h1>
     </div>
 </div>
 
-<!-- Matt was here -->
-
 <div class="container">
-    <div class="welcome">
-        <h2 style="color: #343409;">Welcome
-            <%= current_user.username if current_user != nil %>!
-        </h2>
-
-        <div>
-            <%= link_to 'Post Something', new_post_path, class: "btn btn-tertiary" %>
-            <%= paginate @posts %>
-        </div>
-    </div>
     <div class="panel-group">
-        <% @posts.each do |post| %>
+        <% @user.posts.each do |post| %>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="pull-left">
@@ -52,8 +40,4 @@
             </div>
         <% end %>
     </div>
-
-    <br>
-
 </div>
-<p id="notice"><%= notice %></p>
