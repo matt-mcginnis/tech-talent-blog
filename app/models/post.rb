@@ -6,6 +6,6 @@ class Post < ApplicationRecord
     paginates_per 3
 
     def self.search(search)
-        where('blog_entry LIKE ? OR author LIKE ?', "%#{search}%", "%#{search}%")
+        where('blog_entry LIKE ? OR username LIKE ?', "%#{search}%", "%#{search}%")
     end
 end
