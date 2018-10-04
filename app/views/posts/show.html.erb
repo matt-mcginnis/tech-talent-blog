@@ -13,9 +13,9 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="pull-left">
-                <% if post.user.avatar? %>
+                <% if @post.user.avatar? %>
                     <td>
-                        <%= image_tag post.user.avatar.url, size: 50, class: "img-circle" %>
+                        <%= image_tag @post.user.avatar.url, size: 50, class: "img-circle" %>
                     </td>
                 <% else %>
                     <td>
@@ -57,16 +57,16 @@
             <div class="panel panel-comments">
                 <div class="panel-heading">
                     <div class="pull-left">
-                        <% if post.user.avatar? %>
+                        <% if comment.user.avatar? %>
                             <td>
-                                <%= image_tag post.user.avatar.url, size: 50, class: "img-circle" %>
+                                <%= image_tag comment.user.avatar.url, size: 50, class: "img-circle" %>
                             </td>
                         <% else %>
                             <td>
                                 <%= image_tag "Default-avatar.png", size: 50, class: "img-circle" %>
                             </td>
                         <% end %>
-                        <strong><%= link_to @post.user.username, user_posts_path(name: @post.user.username) %></strong>
+                        <strong><%= link_to comment.user.username, user_posts_path(name: comment.user.username) %></strong>
                     </div>
                 </div>
                 <div class="panel-body">
