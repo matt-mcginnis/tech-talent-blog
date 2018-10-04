@@ -11,7 +11,7 @@
 
     <body>
 
-    <% if request.fullpath != "/users/sign_in" && request.fullpath != "/users/sign_up" %>
+    <% if request.fullpath != "/users/sign_in" && request.fullpath != "/users/sign_up"  && request.fullpath != "/users"%>
         <nav class="navbar navbar-light">
             <%= link_to "Fall Blog", root_path, class: "navbar-brand" %>
 
@@ -25,7 +25,15 @@
             <div class="right">
                 <% if user_signed_in? %>
                     <!-- <%= gravatar_tag current_user.email, size: 50 %> -->
-                    <%= image_tag current_user.avatar.url, size: 50, class: "img-circle" %>
+                    <% if current_user.avatar? %>
+                        <td>
+                            <%= image_tag current_user.avatar.url, size: 50, class: "img-circle" %>
+                        </td>
+                    <% else %>
+                        <td>
+                            <%= image_tag "Default-avatar.png", size: 50, class: "img-circle" %>
+                        </td>
+                    <% end %>
                     <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-secondary" %>
                     <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
                 <% end %>

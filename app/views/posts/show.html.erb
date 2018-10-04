@@ -1,17 +1,25 @@
 <div class="jumbotron">
     <div class="container">
-        <h1><b>Post</b></h1>
+        <h1>
+            <b>Post</b>
+        </h1>
     </div>
 </div>
 
 <div class="container">
-    <h2><b>Original Post</b></h2>
+    <h2>
+        <b>Original Post</b>
+    </h2>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="pull-left">
-                <% if @post.user.avatar != nil %>
+                <% if post.user.avatar? %>
                     <td>
-                    <%= image_tag @post.user.avatar.url, size: 50, class: "img-circle" %>
+                        <%= image_tag post.user.avatar.url, size: 50, class: "img-circle" %>
+                    </td>
+                <% else %>
+                    <td>
+                        <%= image_tag "Default-avatar.png", size: 50, class: "img-circle" %>
                     </td>
                 <% end %>
                 <strong><%= link_to @post.user.username, user_posts_path(name: @post.user.username) %></strong>
@@ -25,7 +33,8 @@
         </div>
         <div class="panel-footer">
             <div class="pull-right">
-                Posted at <%= @post.created_at.in_time_zone("America/New_York").strftime("%I:%M%p on %m-%d-%Y") %>
+                Posted at
+                <%= @post.created_at.in_time_zone("America/New_York").strftime("%I:%M%p on %m-%d-%Y") %>
             </div>
             <div class="pull-left">
                 <%= link_to 'Show', @post, class: 'btn btn-primary' %>
@@ -35,44 +44,52 @@
         </div>
     </div>
 
-<div id="comments">
-    <%= render 'comments/form', comment: @comment %>
-</div>
-
-<h2 style="margin-top: 30px; margin-bottom: 0px;"> <b>Comments</b> </h2>
-
-<div class="panel-group">
-    <% @post.comments.each do |comment| %>
-    <div class="panel panel-comments">
-        <div class="panel-heading">
-            <div class="pull-left">
-                <% if comment.user.avatar != nil %>
-                    <td>
-                    <%= image_tag comment.user.avatar.url, size: 50, class: "img-circle" %>
-                    </td>
-                <% end %>
-                <strong><%= link_to @post.user.username, user_posts_path(name: @post.user.username) %></strong>
-            </div>
-        </div>
-        <div class="panel-body">
-            <%= comment.comment_entry %>
-        </div>
-        <div class="panel-footer">
-            <div class="pull-right">
-                Posted at <%= comment.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %>
-            </div>
-            <div class="pull-left">
-                <%= link_to 'Show', comment, class: 'btn btn-primary' %>
-                <%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-secondary' %>
-                <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-tertiary' %>
-            </div>
-        </div>
+    <div id="comments">
+        <%= render 'comments/form', comment: @comment %>
     </div>
-    <% end %>
-</div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', :back %>
+    <h2 style="margin-top: 30px; margin-bottom: 0px;">
+        <b>Comments</b>
+    </h2>
+
+    <div class="panel-group">
+        <% @post.comments.each do |comment| %>
+            <div class="panel panel-comments">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <% if post.user.avatar? %>
+                            <td>
+                                <%= image_tag post.user.avatar.url, size: 50, class: "img-circle" %>
+                            </td>
+                        <% else %>
+                            <td>
+                                <%= image_tag "Default-avatar.png", size: 50, class: "img-circle" %>
+                            </td>
+                        <% end %>
+                        <strong><%= link_to @post.user.username, user_posts_path(name: @post.user.username) %></strong>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <%= comment.comment_entry %>
+                </div>
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        Posted at
+                        <%= comment.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %>
+                    </div>
+                    <div class="pull-left">
+                        <%= link_to 'Show', comment, class: 'btn btn-primary' %>
+                        <%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-secondary' %>
+                        <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-tertiary' %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+
+    <%= link_to 'Edit', edit_post_path(@post) %>
+    |
+    <%= link_to 'Back', :back %>
 
 </div>
 
