@@ -11,24 +11,28 @@
 
     <body>
 
-        <% if request.fullpath != "/users/sign_in" && request.fullpath != "/users/sign_up" %>
-            <nav class="navbar navbar-light">
-                <%= link_to "Fall Blog", root_path, class: "navbar-brand" %>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" style="background-color: #F7E9D4;" type="search" placeholder="Search..." aria-label="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
-                <div class="right">
-                    <% if user_signed_in? %>
-                        <!-- <%= gravatar_tag current_user.email, size: 50 %> -->
-                        <%= image_tag current_user.avatar.url, size: 50, class: "img-circle" %>
-                        <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-secondary" %>
-                        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
-                    <% end %>
-                </div>
-            </nav>
-        <% end %>
+    <% if request.fullpath != "/users/sign_in" && request.fullpath != "/users/sign_up" %>
+        <nav class="navbar navbar-light">
+            <%= link_to "Fall Blog", root_path, class: "navbar-brand" %>
 
-        <%= yield %>
-    </body>
+            <form class="form-inline my-2 my-lg-0">
+                <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
+                    <%= text_field_tag :search, params[:search], placeholder: "Search...", class: "form-control mr-sm-2", style: "background-color: #F7E9D4;" %>
+                    <%= submit_tag "Search", :name => nil, class: "btn btn-secondary my-2 my-sm-0" %>
+                <% end %>
+            </form>
+
+            <div class="right">
+                <% if user_signed_in? %>
+                    <!-- <%= gravatar_tag current_user.email, size: 50 %> -->
+                    <%= image_tag current_user.avatar.url, size: 50, class: "img-circle" %>
+                    <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-secondary" %>
+                    <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
+                <% end %>
+            </div>
+        </nav>
+    <% end %>
+
+    <%= yield %>
+</body>
 </html>

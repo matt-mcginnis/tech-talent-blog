@@ -4,4 +4,8 @@ class Post < ApplicationRecord
 
     mount_uploader :avatar, AvatarUploader
     paginates_per 3
+
+    def self.search(search)
+        where('blog_entry LIKE ? OR author LIKE ?', "%#{search}%", "%#{search}%")
+    end
 end

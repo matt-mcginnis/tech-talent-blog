@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order('created_at DESC').page(params[:page])
+    if params[:search]
+        @posts = Post.search(params[:search]).order('created_at DESC').page(params[:page])
+    else
+        @posts = Post.all.order('created_at DESC').page(params[:page])
+    end
   end
 
   def user_posts
