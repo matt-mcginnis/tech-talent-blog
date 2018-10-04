@@ -19,10 +19,13 @@
         </div>
         <div class="panel-body">
             <%= @post.blog_entry %>
+            <% if @post.avatar.url != nil %>
+                <%= image_tag @post.avatar.url, style: "width: 200px;" %>
+            <% end %>
         </div>
         <div class="panel-footer">
             <div class="pull-right">
-                Posted at <%= @post.created_at.in_time_zone("America/New_York").strftime("%m-%d-%Y at %I:%M%p") %>
+                Posted at <%= post.created_at.in_time_zone("America/New_York").strftime("%I:%M%p on %m-%d-%Y") %>
             </div>
             <div class="pull-left">
                 <%= link_to 'Show', @post, class: 'btn btn-primary' %>
